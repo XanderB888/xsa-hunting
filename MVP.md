@@ -4,22 +4,22 @@ XSA Hunting is the social media for hunters. Post photos, trophy details, shot-p
 - A user can create an account and login/logout
 - A user can view the main feed of all hunters
 - A user can view a single post in detail
-- A user can create a post
+- A user can create/delete a post
 - A user can comment on a post
-- A user can delete their post
+- View the main feed 
 
 ## Create post (Data of the post)
 - Photo
-- Captio
+- Caption
 - Location marker
-- animal/species
-- shot placement (animal image plus red dot)
-- time of day
-- wind conditions
-- weather conditions
-- rifle caliber
-- ammo type
-- ammo grain
+- Animal/species
+- Shot placement (animal image plus red dot)
+- Time of day
+- Wind conditions
+- Weather conditions
+- Rifle caliber
+- Ammo type
+- Ammo grain
 
 ## Out of scope
 - Hunting advertisement marketplace (Farmers market their packages)
@@ -28,9 +28,5 @@ XSA Hunting is the social media for hunters. Post photos, trophy details, shot-p
 - Environment/area hunting tips for your trip
 - Hunters recipes for the bush
 - Hunter's profile (Profile picture and Bio)
+- User can post videos
 
-## Open Questions
-- Shot placement versions (Have pre determined images or let users upload?)
-- For mvp, do users need a profile or just the feed?
-- Do I need shot placement for MVP?
-- Can users post videos? 
