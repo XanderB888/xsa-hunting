@@ -6,7 +6,6 @@ XSA Hunting is the social media for hunters. Post photos, trophy details, shot-p
 - A user can view a single post in detail
 - A user can create/delete a post
 - A user can comment on a post
-- View the main feed 
 
 ## Create post (Data of the post)
 - Photo
