@@ -16,9 +16,12 @@ XSA Hunting is the social media for hunters. Post photos, trophy details, shot-p
 - Time of day
 - Wind conditions
 - Weather conditions
-- Rifle caliber
+- Firearm caliber
 - Ammo type
 - Ammo grain
+- Sex of animal
+- Distance of shot
+- Firearm brand
 
 ## Out of scope
 - Hunting advertisement marketplace (Farmers market their packages)
@@ -28,4 +31,5 @@ XSA Hunting is the social media for hunters. Post photos, trophy details, shot-p
 - Hunters recipes for the bush
 - Hunter's profile (Profile picture and Bio)
 - User can post videos
+- Like button for posts + like counter
 
