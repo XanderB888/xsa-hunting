@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { mockPosts } from '../../mockData.js';
+import ShotPlacementPanel from './ShotPlacementPanel.jsx';
 
 function PostDetail() {
   const { id } = useParams();
@@ -17,6 +18,8 @@ function PostDetail() {
       <p>{post.caption}</p>
       <p>Location: {post.location}</p>
       <p>Distance: {post.distance}m</p>
+
+      <ShotPlacementPanel shot={post.shotPlacement} />
     </div>
   );
 }
