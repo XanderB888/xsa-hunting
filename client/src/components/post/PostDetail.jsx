@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { mockPosts } from '../../mockData.js';
 import ShotPlacementPanel from './ShotPlacementPanel.jsx';
 import FirearmInfo from './FirearmInfo.jsx';
+import CommentList from '../comments/CommentList.jsx';
 
 function PostDetail() {
   const { id } = useParams();
@@ -22,6 +23,7 @@ function PostDetail() {
 
       <ShotPlacementPanel shot={post.shotPlacement} />
       <FirearmInfo firearm={post.firearm} />
+      <CommentList comments={post.comments} />
     </div>
   );
 }
