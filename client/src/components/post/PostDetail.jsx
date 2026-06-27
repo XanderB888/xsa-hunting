@@ -4,6 +4,8 @@ import ShotPlacementPanel from './ShotPlacementPanel.jsx';
 import FirearmInfo from './FirearmInfo.jsx';
 import CommentList from '../comments/CommentList.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
+import { useState } from 'react';
+import CommentForm from '../comments/CommentForm.jsx';
 
 function PostDetail() {
   const { id } = useParams();
@@ -14,6 +16,17 @@ function PostDetail() {
   const handleDelete = () => {
     console.log('Delete post', post.id);
   }; // This is for testing, real Deleteing will be implemented later
+
+  const [comments, setComments] = useState(post ? post.comments : []);
+
+  const addComment = (text) => {
+    const newComment = {
+      id: Date.now(),
+      username: user ? user.username : 'Anonymous',
+      text: text,
+    };
+    setComments([...comments, newComment]);
+  };
 
   if (!post) {
     return <div>Post not found</div>;
@@ -30,7 +43,8 @@ function PostDetail() {
 
       <ShotPlacementPanel shot={post.shotPlacement} />
       <FirearmInfo firearm={post.firearm} />
-      <CommentList comments={post.comments} />
+      <CommentList comments={comments} />
+      <CommentForm onAddComment={addComment} />
       {isOwner && (
         <button onClick={handleDelete}>Delete this post</button>
       )}
