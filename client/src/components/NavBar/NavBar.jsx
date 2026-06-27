@@ -1,12 +1,28 @@
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
 
 function NavBar() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
-    <div>
-      NavBar — {user ? 'logged in' : 'logged out'}
-    </div>
+    <nav>
+      <Link to="/">XSA Hunting</Link>
+
+      {user ? (
+        <>
+          <Link to="/create">New Post</Link>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
+    </nav>
   );
 }
 
