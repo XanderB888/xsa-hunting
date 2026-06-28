@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ShotPlacementSelector from './ShotPlacementSelector.jsx';
 
 function CreatePostForm() {
   const [form, setForm] = useState({
@@ -37,6 +38,8 @@ function CreatePostForm() {
         <input name="timeOfDay" placeholder="Time of hunt" value={form.timeOfDay} onChange={handleChange} />
         <input name="wind" placeholder="Wind conditions" value={form.wind} onChange={handleChange} />
         <input name="weather" placeholder="Weather conditions" value={form.weather} onChange={handleChange} />
+
+        <ShotPlacementSelector />
 
         <button type="submit">Submit Post</button>
       </form>
