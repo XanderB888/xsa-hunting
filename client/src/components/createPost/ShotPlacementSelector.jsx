@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SHOT_IMAGES } from "../../gallery/gallery.js";
 
-function ShotPlacementSelector() {
+function ShotPlacementSelector({ onShotChange }) {
   const [species, setSpecies] = useState('');
   const [view, setView] = useState('');
   const [dot, setDot] = useState(null);  
@@ -16,6 +16,7 @@ function ShotPlacementSelector() {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setDot({ x, y });
+    onShotChange({ species, view, x, y }); //Reports up to the parent
   };
 
   return (

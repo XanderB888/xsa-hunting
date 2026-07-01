@@ -8,6 +8,9 @@ function CreatePostForm() {
     firearmBrand: '', caliber: '', ammo: '', grain: '',
     timeOfDay: '', wind: '', weather: '',
   });
+
+  const [shotData, setShotData] = useState(null);//Holds shot data
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,7 +20,8 @@ function CreatePostForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('New post:', form);   // placeholder — real assembly + submit to be implemented later
+    console.log('Form fields:', form);
+    console.log('Shot data:', shotData);
   };
 
   return (
@@ -39,7 +43,7 @@ function CreatePostForm() {
         <input name="wind" placeholder="Wind conditions" value={form.wind} onChange={handleChange} />
         <input name="weather" placeholder="Weather conditions" value={form.weather} onChange={handleChange} />
 
-        <ShotPlacementSelector />
+        <ShotPlacementSelector onShotChange={setShotData} />
 
         <button type="submit">Submit Post</button>
       </form>
