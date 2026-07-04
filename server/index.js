@@ -4,7 +4,9 @@ require('dotenv').config();
 const pool = require('./db');
 
 const app = express();
+const postsRouter = require('./routes/posts');
 
+app.use('/api/posts', postsRouter);
 app.use(cors());              // allow front-end to call this server
 app.use(express.json());      // parse JSON request bodies
 
