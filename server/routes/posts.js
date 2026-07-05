@@ -99,4 +99,31 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// POST /api/posts/:id/comments — add a comment to a post
+router.post('/:id/comments', async (req, res) => {
+  try {
+    const { id } = req.params;          // the post id
+    const { user_id, text } = req.body;
+
+    const result = await pool.query(`
+      INSERT INTO comments (post_id, user_id, text)
+      VALUES ($1, $2, $3)
+      RETURNING *
+    `, [id, user_id, text]);
+
+    // join to get the username for the returned comment
+    const commentWithUser = await pool.query(`
+      SELECT comments.*, users.username
+      FROM comments
+      JOIN users ON comments.user_id = users.id
+      WHERE comments.id = $1
+    `, [result.rows[0].id]);
+
+    res.status(201).json(commentWithUser.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to add comment' });
+  }
+});
+
 module.exports = router;
