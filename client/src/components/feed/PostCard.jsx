@@ -7,7 +7,7 @@ function PostCard({ post }) {
       <p>{post.username}</p>
       <p>{post.caption}</p>
       <p>{post.species}</p>
-      <p>{post.comments.length} comments</p>
+      <p>{post.comment_count} comments</p>
       <Link to={`/posts/${post.id}`}>View post</Link>
     </div>
   );

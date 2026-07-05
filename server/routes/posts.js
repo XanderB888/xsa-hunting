@@ -8,9 +8,12 @@ const authenticate = require('../middleware/auth');
 router.get('/', authenticate, async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT posts.*, users.username
+      SELECT posts.*, users.username,
+        COUNT(comments.id) AS comment_count
       FROM posts
       JOIN users ON posts.user_id = users.id
+      LEFT JOIN comments ON comments.post_id = posts.id
+      GROUP BY posts.id, users.username
       ORDER BY posts.created_at DESC
     `);
     res.json(result.rows);
