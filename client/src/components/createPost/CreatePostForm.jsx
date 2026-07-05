@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShotPlacementSelector from './ShotPlacementSelector.jsx';
+import api from '../../api/axios.js';
+import { useAuth } from '../../context/AuthContext.jsx';
 
 function CreatePostForm() {
   const [form, setForm] = useState({
+    photo: '',
     caption: '', location: '', species: '', sex: '', distance: '',
     firearmBrand: '', caliber: '', ammo: '', grain: '',
     timeOfDay: '', wind: '', weather: '',
@@ -18,16 +21,41 @@ function CreatePostForm() {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form fields:', form);
-    console.log('Shot data:', shotData);
+    try {
+      const newPost = {
+        photo: form.photo || 'https://placehold.co/600x400',
+        caption: form.caption,
+        location: form.location,
+        species: form.species,
+        sex: form.sex,
+        distance: form.distance ? Number(form.distance) : null,
+        shot_image: shotData ? shotData.image : null,
+        shot_x: shotData ? shotData.x : null,
+        shot_y: shotData ? shotData.y : null,
+        time_of_day: form.timeOfDay,
+        wind: form.wind,
+        weather: form.weather,
+        firearm_brand: form.firearmBrand,
+        caliber: form.caliber,
+        ammo: form.ammo,
+        grain: form.grain ? Number(form.grain) : null,
+      };
+
+      const res = await api.post('/posts', newPost);
+      navigate(`/posts/${res.data.id}`);   // go to the new post
+    } catch (err) {
+      console.error(err);
+      alert('Failed to create post');
+    }
   };
 
   return (
     <div>
       <h2>Create a Post</h2>
       <form onSubmit={handleSubmit}>
+        <input name="photo" placeholder="Photo URL" value={form.photo} onChange={handleChange} />
         <input name="caption" placeholder="Caption" value={form.caption} onChange={handleChange} />
         <input name="location" placeholder="Location" value={form.location} onChange={handleChange} />
         <input name="species" placeholder="Species" value={form.species} onChange={handleChange} />

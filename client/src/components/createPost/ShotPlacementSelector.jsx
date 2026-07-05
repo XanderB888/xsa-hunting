@@ -16,7 +16,7 @@ function ShotPlacementSelector({ onShotChange }) {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setDot({ x, y });
-    onShotChange({ species, view, x, y }); //Reports up to the parent
+    onShotChange({ species, view, x, y, image: currentImage }); //Reports up to the parent
   };
 
   return (
