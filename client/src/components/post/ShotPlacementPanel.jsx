@@ -2,12 +2,12 @@ function ShotPlacementPanel({ shot }) {
   return (
     <div>
       <div style={{ position: 'relative', display: 'inline-block' }}>
-        <img src={shot.image} alt="Shot placement diagram" />
+        <img src={shot.shot_image} alt="Shot placement diagram" />
         <div
           style={{
             position: 'absolute',
-            left: `${shot.x}%`,
-            top: `${shot.y}%`,
+            left: `${shot.shot_x}%`,
+            top: `${shot.shot_y}%`,
             width: '14px',
             height: '14px',
             backgroundColor: 'red',
@@ -17,7 +17,7 @@ function ShotPlacementPanel({ shot }) {
         />
       </div>
 
-      <p>Time: {shot.timeOfDay}</p>
+      <p>Time: {shot.time_of_day}</p>
       <p>Wind: {shot.wind}</p>
       <p>Weather: {shot.weather}</p>
     </div>
