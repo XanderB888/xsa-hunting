@@ -51,11 +51,30 @@ function CreatePostForm() {
     }
   };
 
+  const openUploadWidget = () => {
+    const widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: 'zrghysak',
+        uploadPreset: 'xsa-hunting',
+        sources: ['local', 'url', 'camera'],   // where users can pick from
+        multiple: false,                         // one image per post
+        resourceType: 'image',
+      },
+      (error, result) => {
+        if (!error && result && result.event === 'success') {
+          // the uploaded image's URL:
+          setForm((prev) => ({ ...prev, photo: result.info.secure_url }));
+        }
+      }
+    );
+    widget.open();
+  };
+
   return (
     <div>
       <h2>Create a Post</h2>
       <form onSubmit={handleSubmit}>
-        <input name="photo" placeholder="Photo URL" value={form.photo} onChange={handleChange} />
+        <button type="button" onClick={openUploadWidget}>Upload Image</button>{form.photo && <img src={form.photo} alt="preview" width="200" />}
         <input name="caption" placeholder="Caption" value={form.caption} onChange={handleChange} />
         <input name="location" placeholder="Location" value={form.location} onChange={handleChange} />
         <input name="species" placeholder="Species" value={form.species} onChange={handleChange} />
