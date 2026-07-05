@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
+const jwt = require('jsonwebtoken');
+const authenticate = require('../middleware/auth');
 
 // GET /api/posts — all posts, newest first, with username
-router.get('/', async (req, res) => {
+router.get('/', authenticate, async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT posts.*, users.username
@@ -19,7 +21,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/posts/:id — one post with its comments
-router.get('/:id', async (req, res) => {
+router.get('/:id', authenticate, async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -53,13 +55,15 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST /api/posts — create a post
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
   try {
     const {
-      user_id, photo, caption, location, species, sex, distance,
+      photo, caption, location, species, sex, distance,
       shot_image, shot_x, shot_y, time_of_day, wind, weather,
       firearm_brand, caliber, ammo, grain
     } = req.body;
+
+    const userId = req.user.id;
 
     const result = await pool.query(`
       INSERT INTO posts
@@ -68,7 +72,7 @@ router.post('/', async (req, res) => {
          firearm_brand, caliber, ammo, grain)
       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)
       RETURNING *
-    `, [user_id, photo, caption, location, species, sex, distance,
+    `, [userId, photo, caption, location, species, sex, distance,
         shot_image, shot_x, shot_y, time_of_day, wind, weather,
         firearm_brand, caliber, ammo, grain]);
 
@@ -80,19 +84,22 @@ router.post('/', async (req, res) => {
 });
 
 // DELETE /api/posts/:id
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticate, async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query(
-      'DELETE FROM posts WHERE id = $1 RETURNING *',
-      [id]
-    );
 
-    if (result.rows.length === 0) {
+    const check = await pool.query('SELECT user_id FROM posts WHERE id = $1', [id]);
+
+    if (check.rows.length === 0) {
       return res.status(404).json({ error: 'Post not found' });
     }
 
-    res.json({ message: 'Post deleted', post: result.rows[0] });
+    if (check.rows[0].user_id !== req.user.id) {
+      return res.status(403).json({ error: 'You can only delete your own posts' });
+    }
+
+    await pool.query('DELETE FROM posts WHERE id = $1', [id]);
+    res.json({ message: 'Post deleted' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to delete post' });
@@ -100,16 +107,17 @@ router.delete('/:id', async (req, res) => {
 });
 
 // POST /api/posts/:id/comments — add a comment to a post
-router.post('/:id/comments', async (req, res) => {
+router.post('/:id/comments', authenticate, async (req, res) => {
   try {
     const { id } = req.params;          // the post id
-    const { user_id, text } = req.body;
+    const { text } = req.body;
+    const userId = req.user.id;
 
     const result = await pool.query(`
       INSERT INTO comments (post_id, user_id, text)
       VALUES ($1, $2, $3)
       RETURNING *
-    `, [id, user_id, text]);
+    `, [id, userId, text]);
 
     // join to get the username for the returned comment
     const commentWithUser = await pool.query(`
