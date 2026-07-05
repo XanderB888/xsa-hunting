@@ -8,11 +8,16 @@ function SignupPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
+  const { register } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(); // fake login for now — sets the fake user
-    navigate('/'); // redirect to the feed
+    try {
+      await register(username, email, password);
+      navigate('/');
+    } catch (err) {
+      alert('Registration failed — username or email may be taken');
+    }
   };
 
   return (

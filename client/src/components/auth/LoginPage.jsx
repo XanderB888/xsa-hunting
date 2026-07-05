@@ -8,10 +8,14 @@ function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(); // fake login for now — sets the fake user
-    navigate('/'); // redirect to the feed
+    try {
+      await login(email, password);
+      navigate('/');
+    } catch (err) {
+      alert('Invalid credentials');   // basic error feedback for now
+    }
   };
 
   return (
