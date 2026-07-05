@@ -8,6 +8,7 @@ function PostCard({ post }) {
       <p>{post.caption}</p>
       <p>{post.species}</p>
       <p>{post.comment_count} comments</p>
+      <p style={{ backgroundColor: post.liked_by_me ? 'lightblue' : 'gray' }}>💖 {post.like_count}</p>
       <Link to={`/posts/${post.id}`}>View post</Link>
     </div>
   );

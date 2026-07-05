@@ -52,6 +52,15 @@ function PostDetail() {
     }
   };
 
+  const handleLike = async () => {
+    try {
+      const res = await api.patch(`/posts/${id}/like`);
+      setPost({ ...post, like_count: res.data.like_count, liked_by_me: res.data.liked_by_me });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (loading) return <div>Loading post...</div>;
   if (error) return <div>{error}</div>;
 
@@ -63,6 +72,7 @@ function PostDetail() {
       <img src={post.photo} alt={post.species} />
       <p>{post.username}</p>
       <p>{post.caption}</p>
+      <button onClick={handleLike} style={{ backgroundColor: post.liked_by_me ? 'lightblue' : 'gray' }}> 💖  {post.like_count}</button>
       <p>Location: {post.location}</p>
       <p>Distance: {post.distance}m</p>
 

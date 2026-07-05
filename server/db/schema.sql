@@ -25,7 +25,7 @@ CREATE TABLE posts (
   caliber VARCHAR(100),
   ammo VARCHAR(255),
   grain INTEGER,
-  created_at TIMESTAMP DEFAULT NOW()
+  created_at TIMESTAMP DEFAULT NOW(),
 );
 
 CREATE TABLE comments (
@@ -34,4 +34,11 @@ CREATE TABLE comments (
   user_id INTEGER REFERENCES users(id),
   text TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE post_likes (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
+  UNIQUE (user_id, post_id)
 );

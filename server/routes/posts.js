@@ -7,15 +7,19 @@ const authenticate = require('../middleware/auth');
 // GET /api/posts — all posts, newest first, with username
 router.get('/', authenticate, async (req, res) => {
   try {
-    const result = await pool.query(`
-      SELECT posts.*, users.username,
-        COUNT(comments.id) AS comment_count
-      FROM posts
-      JOIN users ON posts.user_id = users.id
-      LEFT JOIN comments ON comments.post_id = posts.id
-      GROUP BY posts.id, users.username
-      ORDER BY posts.created_at DESC
-    `);
+    const userId = req.user.id;
+      const result = await pool.query(`
+        SELECT posts.*, users.username,
+          COUNT(DISTINCT comments.id) AS comment_count,
+          COUNT(DISTINCT post_likes.id) AS like_count,
+          BOOL_OR(post_likes.user_id = $1) AS liked_by_me
+        FROM posts
+        JOIN users ON posts.user_id = users.id
+        LEFT JOIN comments ON comments.post_id = posts.id
+        LEFT JOIN post_likes ON post_likes.post_id = posts.id
+        GROUP BY posts.id, users.username
+        ORDER BY posts.created_at DESC
+      `, [userId]);
     res.json(result.rows);
   } catch (err) {
     console.error(err);
@@ -27,13 +31,18 @@ router.get('/', authenticate, async (req, res) => {
 router.get('/:id', authenticate, async (req, res) => {
   try {
     const { id } = req.params;
+    const userId = req.user.id; 
 
     const postResult = await pool.query(`
-      SELECT posts.*, users.username
+      SELECT posts.*, users.username,
+        COUNT(DISTINCT post_likes.id) AS like_count,
+        BOOL_OR(post_likes.user_id = $2) AS liked_by_me
       FROM posts
       JOIN users ON posts.user_id = users.id
+      LEFT JOIN post_likes ON post_likes.post_id = posts.id
       WHERE posts.id = $1
-    `, [id]);
+      GROUP BY posts.id, users.username
+    `, [id, userId]);
 
     if (postResult.rows.length === 0) {
       return res.status(404).json({ error: 'Post not found' });
@@ -134,6 +143,49 @@ router.post('/:id/comments', authenticate, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to add comment' });
+  }
+});
+
+  // PATCH /api/posts/:id/like — toggle like for current user
+router.patch('/:id/like', authenticate, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
+
+    // has this user already liked this post?
+    const existing = await pool.query(
+      'SELECT id FROM post_likes WHERE user_id = $1 AND post_id = $2',
+      [userId, id]
+    );
+
+    if (existing.rows.length > 0) {
+      // already liked → unlike
+      await pool.query(
+        'DELETE FROM post_likes WHERE user_id = $1 AND post_id = $2',
+        [userId, id]
+      );
+    } else {
+      // not liked → like
+      await pool.query(
+        'INSERT INTO post_likes (user_id, post_id) VALUES ($1, $2)',
+        [userId, id]
+      );
+    }
+
+    // fresh count + this user's new state
+    const countResult = await pool.query(
+      'SELECT COUNT(*) AS like_count FROM post_likes WHERE post_id = $1',
+      [id]
+    );
+    const likedByMe = existing.rows.length === 0;
+
+    res.json({
+      like_count: Number(countResult.rows[0].like_count),
+      liked_by_me: likedByMe,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to toggle like' });
   }
 });
 

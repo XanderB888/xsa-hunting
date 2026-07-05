@@ -16,6 +16,7 @@ function NavBar() {
 
       {user ? (
         <>
+          <span>Logged in as {user.username}</span>
           <Link to="/create">New Post</Link>
           <button onClick={handleLogout}>Logout</button>
         </>
