@@ -25,7 +25,7 @@ CREATE TABLE posts (
   caliber VARCHAR(100),
   ammo VARCHAR(255),
   grain INTEGER,
-  created_at TIMESTAMP DEFAULT NOW(),
+  created_at TIMESTAMP DEFAULT NOW()
 );
 
 CREATE TABLE comments (
