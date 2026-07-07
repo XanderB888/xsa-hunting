@@ -72,7 +72,7 @@ function PostDetail() {
       <img src={post.photo} alt={post.species} />
       <p>{post.username}</p>
       <p>{post.caption}</p>
-      <button onClick={handleLike} style={{ backgroundColor: post.liked_by_me ? 'lightblue' : 'gray' }}> 💖  {post.like_count}</button>
+      <button onClick={handleLike} style={{ color: post.liked_by_me ? 'darkgreen' : 'gray' }}> 💖  {post.like_count}</button>
       <p>Location: {post.location}</p>
       <p>Distance: {post.distance}m</p>
 
