@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
+import { Link } from 'react-router-dom';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -35,6 +36,7 @@ function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Log in</button>
+        <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
       </form>
     </div>
   );
