@@ -10,23 +10,27 @@ import ProtectedRoute from './components/routes/ProtectedRoute.jsx';
 function App() {
     return (
         <>
-            <NavBar />
-            <Routes>
-                <Route path="/" element={
-                    <ProtectedRoute>
-                        <Feed />
-                    </ProtectedRoute>} />
-                <Route path="/signup" element={<SignupPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/posts/:id" element={
-                    <ProtectedRoute>
-                        <PostDetail />
-                    </ProtectedRoute>} />
-                <Route path="/create" element={
-                    <ProtectedRoute>
-                        <CreatePostForm />
-                    </ProtectedRoute>} />
-            </Routes>
+            <div className="app-layout">
+                <NavBar />
+                <main className="app-content">
+                    <Routes>
+                        <Route path="/" element={
+                            <ProtectedRoute>
+                                <Feed />
+                            </ProtectedRoute>} />
+                        <Route path="/signup" element={<SignupPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/posts/:id" element={
+                            <ProtectedRoute>
+                                <PostDetail />
+                            </ProtectedRoute>} />
+                        <Route path="/create" element={
+                            <ProtectedRoute>
+                                <CreatePostForm />
+                            </ProtectedRoute>} />
+                    </Routes>
+                </main>
+            </div>
         </>
     );
 }

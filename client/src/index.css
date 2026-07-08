@@ -3,3 +3,62 @@ img {
   height: auto;
   display: block;
 }
+/* ===== Color palette (earthy/outdoors) ===== */
+:root {
+  --bg: #f4f1ea;           /* warm off-white / khaki paper */
+  --surface: #ffffff;       /* cards, panels */
+  --primary: #4a5d3a;       /* deep bush green */
+  --primary-dark: #3a4a2d;
+  --accent: #8b6f47;        /* earthy brown */
+  --text: #2d2a26;          /* near-black warm */
+  --text-muted: #6b6560;    /* muted brown-gray */
+  --border: #d9d2c5;        /* soft khaki border */
+}
+
+/* ===== Base resets & typography ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ===== Left navbar container ===== */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+/* ===== Images stay contained ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== Base link & heading styles ===== */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+}

@@ -1,0 +1,57 @@
+.navbar {
+  display: flex;
+  flex-direction: column;      /* stack vertically instead of row */
+  gap: 16px;
+  width: 220px;
+  padding: 24px 16px;
+  background-color: var(--primary-dark);   /* dark green sidebar */
+  border-right: 2px solid var(--border);
+  min-height: 100vh;
+}
+
+.navbar-logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.navbar-links {
+  display: flex;
+  flex-direction: column;      /* links stacked */
+  gap: 12px;
+}
+
+.navbar a {
+  color: #e8e4d8;              /* light text on dark sidebar */
+}
+
+.navbar-user {
+  color: #b5ad9c;
+  font-size: 0.85rem;
+}
+
+.navbar-button {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.navbar-button:hover {
+  opacity: 0.6;
+  box-shadow: 0 2px 8px rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+}
+
+.navbar-bottom {
+  margin-top: auto;        /* ← pushes this group to the bottom */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);   /* subtle divider */
+}
