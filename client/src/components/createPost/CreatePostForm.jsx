@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ShotPlacementSelector from './ShotPlacementSelector.jsx';
 import api from '../../api/axios.js';
 import { useAuth } from '../../context/AuthContext.jsx';
+import './CreatePost.css';
 
 function CreatePostForm() {
   const [form, setForm] = useState({
@@ -71,28 +72,48 @@ function CreatePostForm() {
   };
 
   return (
-    <div>
+    <div className="create-post">
       <h2>Create a Post</h2>
-      <form onSubmit={handleSubmit}>
-        <button type="button" onClick={openUploadWidget}>Upload Image</button>{form.photo && <img src={form.photo} alt="preview" width="200" />}
-        <input name="caption" placeholder="Caption" value={form.caption} onChange={handleChange} />
-        <input name="location" placeholder="Location" value={form.location} onChange={handleChange} />
-        <input name="species" placeholder="Species" value={form.species} onChange={handleChange} />
-        <input name="sex" placeholder="Sex (e.g. Ram, Bull)" value={form.sex} onChange={handleChange} />
-        <input name="distance" type="number" placeholder="Shot distance (m)" value={form.distance} onChange={handleChange} />
+      <form onSubmit={handleSubmit} className="create-post-form">
 
-        <input name="firearmBrand" placeholder="Firearm brand" value={form.firearmBrand} onChange={handleChange} />
-        <input name="caliber" placeholder="Caliber" value={form.caliber} onChange={handleChange} />
-        <input name="ammo" placeholder="Ammo type" value={form.ammo} onChange={handleChange} />
-        <input name="grain" type="number" placeholder="Grain" value={form.grain} onChange={handleChange} />
+        <div className="form-section">
+          <div className="form-section-title">Photo</div>
+          <button type="button" onClick={openUploadWidget} className="upload-button">
+            Upload Image
+          </button>
+          {form.photo && <img src={form.photo} alt="preview" className="upload-preview" />}
+        </div>
 
-        <input name="timeOfDay" placeholder="Time of hunt" value={form.timeOfDay} onChange={handleChange} />
-        <input name="wind" placeholder="Wind conditions" value={form.wind} onChange={handleChange} />
-        <input name="weather" placeholder="Weather conditions" value={form.weather} onChange={handleChange} />
+        <div className="form-section">
+          <div className="form-section-title">The Hunt</div>
+          <input name="caption" placeholder="Caption" value={form.caption} onChange={handleChange} />
+          <input name="location" placeholder="Location" value={form.location} onChange={handleChange} />
+          <input name="species" placeholder="Species" value={form.species} onChange={handleChange} />
+          <input name="sex" placeholder="Sex (e.g. Ram, Bull)" value={form.sex} onChange={handleChange} />
+          <input name="distance" type="number" placeholder="Shot distance (m)" value={form.distance} onChange={handleChange} />
+        </div>
 
-        <ShotPlacementSelector onShotChange={setShotData} />
+        <div className="form-section">
+          <div className="form-section-title">Firearm</div>
+          <input name="firearmBrand" placeholder="Firearm brand" value={form.firearmBrand} onChange={handleChange} />
+          <input name="caliber" placeholder="Caliber" value={form.caliber} onChange={handleChange} />
+          <input name="ammo" placeholder="Ammo type" value={form.ammo} onChange={handleChange} />
+          <input name="grain" type="number" placeholder="Grain" value={form.grain} onChange={handleChange} />
+        </div>
 
-        <button type="submit">Submit Post</button>
+        <div className="form-section">
+          <div className="form-section-title">Conditions</div>
+          <input name="timeOfDay" placeholder="Time of hunt" value={form.timeOfDay} onChange={handleChange} />
+          <input name="wind" placeholder="Wind conditions" value={form.wind} onChange={handleChange} />
+          <input name="weather" placeholder="Weather conditions" value={form.weather} onChange={handleChange} />
+        </div>
+
+        <div className="form-section">
+          <div className="form-section-title">Shot Placement</div>
+          <ShotPlacementSelector onShotChange={setShotData} />
+        </div>
+
+        <button type="submit" className="submit-button">Submit Post</button>
       </form>
     </div>
   );

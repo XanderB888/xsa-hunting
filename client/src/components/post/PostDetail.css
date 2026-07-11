@@ -143,3 +143,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 768px) {
+  .post-detail {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    transform: none;        /* remove the centering trick */
+    position: static;
+  }
+}

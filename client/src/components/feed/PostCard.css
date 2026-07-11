@@ -74,3 +74,9 @@
   margin-top: 10px;
   font-weight: 600;
 }
+
+@media (max-width: 768px) {
+  .post-card-image {
+    height: 240px;      /* shorter on mobile — less aggressive crop */
+  }
+}

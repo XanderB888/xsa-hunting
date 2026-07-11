@@ -27,6 +27,7 @@ body {
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 /* ===== Left navbar container ===== */
@@ -61,4 +62,10 @@ a:hover {
 h1, h2, h3 {
   color: var(--primary-dark);
   margin-bottom: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .app-layout {
+    flex-direction: column;         /* sidebar on top, content below */
+  }
 }

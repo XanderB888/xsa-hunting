@@ -1,0 +1,95 @@
+.create-post {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.create-post h2 {
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+}
+
+.create-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.create-post-form input {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 100%;
+}
+.create-post-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* group related fields with a subheading */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.form-section-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* upload button */
+.upload-button {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.upload-button:hover {
+  opacity: 0.9;
+}
+
+/* preview image after upload */
+.upload-preview {
+  max-width: 200px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* the shot placement selector dropdowns */
+.create-post-form select {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-right: 8px;
+}
+
+/* submit button */
+.submit-button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 12px;
+  transition: background-color 0.2s ease;
+}
+.submit-button:hover {
+  background-color: var(--primary-dark);
+}
