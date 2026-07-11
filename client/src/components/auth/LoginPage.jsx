@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { Link } from 'react-router-dom';
+import './Auth.css';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -20,24 +21,26 @@ function LoginPage() {
   };
 
   return (
-    <div>
-      <h2>Welcome Back!</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Log in</button>
-        <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
-      </form>
+    <div className='auth-page'>
+      <div className='auth-container'>
+        <h2>Welcome Back!</h2>
+        <form onSubmit={handleSubmit} className='auth-form'>
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Log in</button>
+          <p className='auth-switch'>Don't have an account? <Link to="/signup">Sign up</Link></p>
+        </form>
+      </div>
     </div>
   );
 }

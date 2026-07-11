@@ -1,0 +1,85 @@
+.auth-container {
+  max-width: 380px;
+  margin: 60px auto;
+  padding: 32px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  position: relative;    
+  z-index: 1;
+  background-color: #d9d2c58f;   /* slightly see-through white */
+  backdrop-filter: blur(2px); 
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--primary-dark);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form input {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.auth-form button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 6px;
+  transition: background-color 0.2s ease;
+}
+.auth-form button:hover {
+  background-color: var(--primary-dark);
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.auth-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;                  
+}
+
+.auth-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://res.cloudinary.com/zrghysak/image/upload/v1783808432/Leopard_and_hunters_un0atm.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  z-index: -1;
+  transform: scale(1.1);
+}
