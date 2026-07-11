@@ -152,6 +152,15 @@
   .post-detail-grid {
     grid-template-columns: 1fr;
   }
+  .post-detail-center {
+    order: 1;      /* appears FIRST on mobile */
+  }
+  .post-detail-left {
+    order: 2;      /* appears SECOND */
+  }
+  .post-detail-right {
+    order: 3;      /* appears THIRD */
+  }
 }
 
 @media (max-width: 768px) {
