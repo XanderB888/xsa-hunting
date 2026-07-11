@@ -79,9 +79,9 @@ function PostDetail() {
           <div className="post-detail-section">
             <h3 className="section-heading">Conditions</h3>
             <div className="conditions-bubble">
-              <p>🕐 {post.time_of_day}</p>
-              <p>💨 {post.wind}</p>
-              <p>☀️ {post.weather}</p>
+              <p><strong>Time:</strong> {post.time_of_day}</p>
+              <p><strong>Wind:</strong> {post.wind}</p>
+              <p><strong>Weather:</strong> {post.weather}</p>
             </div>
           </div>
         </div>

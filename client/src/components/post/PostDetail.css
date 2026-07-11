@@ -1,6 +1,6 @@
 .post-detail {
   width: 90vw;                    /* 90% of the viewport width */
-  max-width: 1400px;              /* but never wider than 1200px */
+  max-width: 1400px;              /* but never wider than 1400px */
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -70,11 +70,6 @@
   gap: 16px;
 }
 
-/*.post-detail-left {
-  padding-left: 16px;
-  padding-right: 8px;
-}*/
-
 .journal-block {
   margin-top: 20px;
   padding-top: 16px;
@@ -85,6 +80,21 @@
 
 .conditions-bubble p {
   margin: 4px 0;
+}
+
+.conditions-bubble,
+.firearm-bubble {
+  background-color: #eef0e8;        
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.conditions-bubble p,
+.firearm-bubble p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  color: var(--text);
 }
 
 .post-detail-actions {
