@@ -89,6 +89,7 @@ function PostDetail() {
         {/* CENTER column — title, photo, meta, shot placement */}
         <div className="post-detail-center">
           <h2 className="post-detail-title">{post.species} — {post.sex}</h2>
+          <p className="post-detail-author">Posted by <strong>{post.username}</strong></p>
           <img src={post.photo} alt={post.species} className="post-detail-image" />
 
           <div className="post-detail-meta">
