@@ -37,7 +37,7 @@ body {
 
 .app-content {
   flex: 1;
-  max-width: 680px;
+  max-width: 780px;
   margin: 0 auto;
   padding: 20px 16px;
 }

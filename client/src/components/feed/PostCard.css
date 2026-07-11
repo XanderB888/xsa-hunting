@@ -1,0 +1,76 @@
+.post-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: box-shadow 0.2s ease;
+}
+.post-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.post-card-image {
+  width: 100%;
+  height: 370px;
+  object-fit: cover;      /* fills the area without distorting */
+}
+
+.post-card-body {
+  padding: 14px 16px;
+}
+
+.post-card-username {
+  font-weight: 600;
+  color: var(--primary-dark);
+  text-align: left;
+  padding-left: 1rem;
+}
+
+/* .post-card-caption {
+  margin: 6px 0;
+  color: var(--text);
+  background-color: rgb(212, 223, 214);
+  text-align: center;
+}
+
+.post-card-caption-label {
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-right: 6px;
+}*/
+
+.post-card-caption-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);           /* earthy brown to tie into the theme */
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.post-card-caption {
+  display: inline-block;              /* bubble hugs the text, not full width */
+  background-color: rgb(227, 238, 229);          /* soft pale green tint */
+  padding: 8px 14px;
+  border-radius: 16px;                /* rounded = bubble feel */
+  margin: 6px 0;
+  color: var(--text);
+}
+
+.post-card-meta {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.post-card-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 600;
+}

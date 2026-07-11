@@ -6,6 +6,7 @@ import ShotPlacementPanel from './ShotPlacementPanel.jsx';
 import FirearmInfo from './FirearmInfo.jsx';
 import CommentList from '../comments/CommentList.jsx';
 import CommentForm from '../comments/CommentForm.jsx';
+import './PostDetail.css';
 
 function PostDetail() {
   const { id } = useParams();
@@ -67,24 +68,67 @@ function PostDetail() {
   const isOwner = user && user.username === post.username;
 
   return (
-    <div>
-      <h2>{post.species} — {post.sex}</h2>
-      <img src={post.photo} alt={post.species} />
-      <p>{post.username}</p>
-      <p>{post.caption}</p>
-      <button onClick={handleLike} style={{ color: post.liked_by_me ? 'darkgreen' : 'gray' }}> 💖  {post.like_count}</button>
-      <p>Location: {post.location}</p>
-      <p>Distance: {post.distance}m</p>
+    <div className="post-detail">
+      <div className="post-detail-grid">
 
-      <ShotPlacementPanel shot={post} />
-      <FirearmInfo firearm={post} />
+        {/* LEFT column — firearm + conditions */}
+        <div className="post-detail-left">
+          <div className="post-detail-section">
+            <FirearmInfo firearm={post} />
+          </div>
+          <div className="post-detail-section">
+            <h3 className="section-heading">Conditions</h3>
+            <div className="conditions-bubble">
+              <p>🕐 {post.time_of_day}</p>
+              <p>💨 {post.wind}</p>
+              <p>☀️ {post.weather}</p>
+            </div>
+          </div>
+        </div>
 
-      <CommentList comments={comments} />
-      <CommentForm onAddComment={addComment} />
+        {/* CENTER column — title, photo, meta, shot placement */}
+        <div className="post-detail-center">
+          <h2 className="post-detail-title">{post.species} — {post.sex}</h2>
+          <img src={post.photo} alt={post.species} className="post-detail-image" />
 
-      {isOwner && (
-        <button onClick={handleDelete}>Delete this post</button>
-      )}
+          <div className="post-detail-meta">
+            <span>📍 {post.location}</span>
+            <span>Shot Distance: {post.distance}m</span>
+          </div>
+
+          <div className="post-detail-shot">
+            <ShotPlacementPanel shot={post} />
+          </div>
+
+          <div className="post-detail-actions">
+            <button
+              onClick={handleLike}
+              className="like-button"
+              style={{ backgroundColor: post.liked_by_me ? 'var(--primary)' : 'var(--border)' }}
+            >
+              👍 {post.like_count}
+            </button>
+            {isOwner && (
+              <button onClick={handleDelete} className="delete-button">
+                Delete this post
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* RIGHT column — comments */}
+        <div className="post-detail-right">
+          <div className="journal-block">
+            <h3 className="section-heading">Journal</h3>
+            <p className="post-card-caption">{post.caption}</p>
+          </div>
+
+          <h3 className="section-heading">Comments</h3>
+          <CommentList comments={comments} />
+          <CommentForm onAddComment={addComment} />
+        </div>
+
+      </div>
     </div>
   );
 }
