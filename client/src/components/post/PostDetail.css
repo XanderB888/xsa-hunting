@@ -101,6 +101,7 @@
   display: flex;
   gap: 12px;
   margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 .section-heading {
@@ -110,6 +111,31 @@
   color: var(--accent);
   font-weight: 700;
   margin-bottom: 10px;
+}
+
+.like-button {
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: box-shadow 0.2s ease;
+}
+.like-button:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.delete-button {
+  background-color: #a4443a;      
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+.delete-button:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 @media (max-width: 900px) {

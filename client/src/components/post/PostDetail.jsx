@@ -92,8 +92,8 @@ function PostDetail() {
           <img src={post.photo} alt={post.species} className="post-detail-image" />
 
           <div className="post-detail-meta">
-            <span>📍 {post.location}</span>
-            <span>Shot Distance: {post.distance}m</span>
+            <span><strong>Location:</strong> {post.location}</span>
+            <span><strong>Shot Distance:</strong> {post.distance}m</span>
           </div>
 
           <div className="post-detail-shot">
