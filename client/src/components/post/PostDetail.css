@@ -1,11 +1,10 @@
 .post-detail {
   width: 90vw;                    /* 90% of the viewport width */
   max-width: 1400px;              /* but never wider than 1400px */
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   margin: 0 auto;
   background-color: var(--surface);
+  position: relative;
+  z-index: 1;
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../../api/axios.js';
 import PostCard from './PostCard.jsx';
+import './Feed.css';
 
 function Feed() {
   const [posts, setPosts] = useState([]);
@@ -26,7 +27,7 @@ function Feed() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div>
+    <div className='feed'>
       {posts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
