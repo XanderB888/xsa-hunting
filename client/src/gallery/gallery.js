@@ -1,13 +1,27 @@
 export const SHOT_IMAGES = {
   Impala: {
-    "Side L": "https://placehold.co/300x200?text=Impala+Side+L",
-    "Side R": "https://placehold.co/300x200?text=Impala+Side+R",
-    Front: "https://placehold.co/300x200?text=Impala+Front",
+    "Side L": "/shots/impala-left.JPG",
+    "Side R": "/shots/impala-right.jpg",
   },
   Kudu: {
-    "Side L": "https://placehold.co/300x200?text=Kudu+Side+L",
-    "Side R": "https://placehold.co/300x200?text=Kudu+Side+R",
-    Front: "https://placehold.co/300x200?text=Kudu+Front",
+    "Side L": "/shots/kudu-left.JPG",
+    "Side R": "/shots/kudu-right.jpg",
+  },
+  Warthog: {
+    "Side L": "/shots/warthog-left.jpg",
+    "Side R": "/shots/warthog-right.JPG",
+  },
+  BushPig: {
+    "Side L": "/shots/bushpig-left.JPG",
+    "Side R": "/shots/bushpig-right.JPG",
+  },
+  Zebra: {
+    "Side L": "/shots/zebra-left.jpg",
+    "Side R": "/shots/zebra-right.JPG",
+  },
+  BlueWildeBeest: {
+    "Side L": "/shots/bwb-left.JPG",
+    "Side R": "/shots/bwb-right.jpg",
   },
 };
 

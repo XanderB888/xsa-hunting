@@ -25,15 +25,17 @@ function ShotPlacementSelector({ onShotChange }) {
 
       <select value={species} onChange={(e) => { setSpecies(e.target.value); setDot(null); }}>
         <option value="">Select species</option>
-        <option value="Impala">Impala</option>
-        <option value="Kudu">Kudu</option>
+        {Object.keys(SHOT_IMAGES).map((name) => (
+          <option key={name} value={name}>{name}</option>
+        ))}
       </select>
 
-      <select value={view} onChange={(e) => { setView(e.target.value); setDot(null); }}>
+      <select value={view} onChange={(e) => { setView(e.target.value); setDot(null); }} disabled={!species}>
         <option value="">Select view</option>
-        <option value="Side L">Side L</option>
-        <option value="Side R">Side R</option>
-        <option value="Front">Front</option>
+        {species && SHOT_IMAGES[species] &&
+         Object.keys(SHOT_IMAGES[species]).map((v) => (
+          <option key={v} value={v}>{v}</option>
+        ))}
       </select>
 
       {currentImage && (
@@ -42,7 +44,12 @@ function ShotPlacementSelector({ onShotChange }) {
         src={currentImage}
         alt={`${species} ${view}`}
         onClick={handleImageClick}
-        style={{ cursor: 'crosshair' }}
+        style={{ 
+          cursor: 'crosshair',
+          width: '500px',
+          height: '367px',
+          objectFit: 'contain', 
+        }}
       />
       {dot && (
         <div
