@@ -107,7 +107,7 @@ function PostDetail() {
               className="like-button"
               style={{ backgroundColor: post.liked_by_me ? 'var(--primary)' : 'var(--border)' }}
             >
-              👍 {post.like_count}
+              💖 {post.like_count}
             </button>
             {isOwner && (
               <button onClick={handleDelete} className="delete-button">
