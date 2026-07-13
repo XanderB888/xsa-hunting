@@ -14,6 +14,7 @@ function CreatePostForm() {
   });
 
   const [shotData, setShotData] = useState(null);//Holds shot data
+  const [submitting, setSubmitting] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -24,6 +25,9 @@ function CreatePostForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (submitting) return;        // guard: ignore clicks while already submitting
+    setSubmitting(true);           // lock the button
+
     try {
       const newPost = {
         photo: form.photo || 'https://placehold.co/600x400',
@@ -45,10 +49,11 @@ function CreatePostForm() {
       };
 
       const res = await api.post('/posts', newPost);
-      navigate(`/posts/${res.data.id}`);   // go to the new post
+      navigate(`/posts/${res.data.id}`);
     } catch (err) {
       console.error(err);
       alert('Failed to create post');
+      setSubmitting(false);        // unlock on error so they can retry
     }
   };
 
@@ -113,7 +118,7 @@ function CreatePostForm() {
           <ShotPlacementSelector onShotChange={setShotData} />
         </div>
 
-        <button type="submit" className="submit-button">Submit Post</button>
+        <button type="submit" className="submit-button" disabled={submitting}>{submitting ? 'Posting...' : 'Submit Post'}</button>
       </form>
     </div>
   );
