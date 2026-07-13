@@ -9,14 +9,19 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+
     try {
       await login(email, password);
       navigate('/');
     } catch (err) {
-      alert('Invalid credentials');   // basic error feedback for now
+      alert('Invalid credentials');
+      setSubmitting(false);
     }
   };
 
@@ -37,7 +42,7 @@ function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Log in</button>
+          <button type="submit" disabled={submitting}>{submitting ? 'Logging in...' : 'Log In'}</button>
           <p className='auth-switch'>Don't have an account? <Link to="/signup">Sign up</Link></p>
         </form>
       </div>

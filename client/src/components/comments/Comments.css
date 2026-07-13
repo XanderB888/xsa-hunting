@@ -44,3 +44,9 @@
 .comment-form button:hover {
   background-color: var(--primary-dark);
 }
+
+.comment-form button:disabled {
+  background-color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.7;
+}

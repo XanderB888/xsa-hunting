@@ -11,14 +11,19 @@ function SignupPage() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const { register } = useAuth();
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+
     try {
       await register(username, email, password);
       navigate('/');
     } catch (err) {
       alert('Registration failed — username or email may be taken');
+      setSubmitting(false);
     }
   };
 
@@ -45,7 +50,7 @@ function SignupPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit">Sign Up</button>
+            <button type="submit" disabled={submitting}>{submitting ? 'Creating account...' : 'Sign Up'}</button>
           </form>
         <p className="auth-switch">Already have an account? <Link to="/login">Log in</Link></p>
       </div>
