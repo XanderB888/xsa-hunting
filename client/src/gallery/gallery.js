@@ -23,5 +23,17 @@ export const SHOT_IMAGES = {
     "Side L": "/shots/bwb-left.jpg",
     "Side R": "/shots/bwb-right.jpg",
   },
+  Springbuck: {
+    "Side L": "/shots/springbuck-left.jpg",
+    "Side R": "/shots/springbuck-right.jpg",
+  },
+  Blesbuck: {
+    "Side L": "/shots/blesbuck-left.jpg",
+    "Side R": "/shots/blesbuck-right.jpg",
+  },
+  Oryx: {
+    "Side L": "/shots/oryx-left.jpg",
+    "Side R": "/shots/oryx-right.jpg",
+  },
 };
 
