@@ -69,6 +69,9 @@ function PostDetail() {
 
   return (
     <div className="post-detail">
+      <button className='back-button' onClick={() => navigate(-1)}>
+         Back to feed
+      </button>
       <div className="post-detail-grid">
 
         {/* LEFT column — firearm + conditions */}

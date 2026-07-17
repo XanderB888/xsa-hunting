@@ -147,6 +147,20 @@
   font-weight: 600;
 }
 
+.back-button {
+  background: none;
+  border: none;
+  color: var(--primary-dark);
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  transition: opacity 0.2s ease;
+}
+.back-button:hover {
+  opacity: 0.6;
+}
+
 @media (max-width: 900px) {
   .post-detail-grid {
     grid-template-columns: 1fr;
