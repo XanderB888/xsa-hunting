@@ -6,7 +6,11 @@
   padding: 24px 16px;
   background-color: var(--primary-dark);   /* dark green sidebar */
   border-right: 2px solid var(--border);
-  min-height: 100vh;
+  position: sticky;            
+  top: 0;
+  height: 100vh;               
+  align-self: flex-start;      /* don't stretch to match feed height */
+  overflow-y: auto;            /* scrolls internally if nav ever gets too tall */
 }
 
 .navbar-logo {
