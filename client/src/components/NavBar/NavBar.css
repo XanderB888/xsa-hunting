@@ -35,7 +35,8 @@
   gap: 12px;
   align-items: center;
   background-color: var(--accent);
-  border-radius: 5px;
+  padding: 10px 14px;
+  border-radius: 6px;
 }
 
 .navbar-links:hover {
