@@ -4,6 +4,7 @@ import ShotPlacementSelector from './ShotPlacementSelector.jsx';
 import api from '../../api/axios.js';
 import { useAuth } from '../../context/AuthContext.jsx';
 import './CreatePost.css';
+import { clearFeedCache } from '../feed/Feed.jsx';
 
 function CreatePostForm() {
   const [form, setForm] = useState({
@@ -49,7 +50,8 @@ function CreatePostForm() {
       };
 
       const res = await api.post('/posts', newPost);
-      navigate(`/posts/${res.data.id}`);
+      clearFeedCache();                    // invalidate stale feed so it refetches
+      navigate(`/posts/${res.data.id}`, { replace: true });
     } catch (err) {
       console.error(err);
       alert('Failed to create post');

@@ -7,6 +7,7 @@ import FirearmInfo from './FirearmInfo.jsx';
 import CommentList from '../comments/CommentList.jsx';
 import CommentForm from '../comments/CommentForm.jsx';
 import './PostDetail.css';
+import { clearFeedCache } from '../feed/Feed.jsx';
 
 function PostDetail() {
   const { id } = useParams();
@@ -46,6 +47,7 @@ function PostDetail() {
   const handleDelete = async () => {
     try {
       await api.delete(`/posts/${id}`);
+      clearFeedCache();      // ← add this
       navigate('/');
     } catch (err) {
       console.error(err);
