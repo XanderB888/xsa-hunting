@@ -14,7 +14,10 @@ function NavBar() {
   return (
     <nav className="navbar">
       <div className="navbar-top">
-        <Link to="/" className="navbar-logo">XSA Hunting</Link>
+        <Link to="/" className="navbar-logo">
+         <img src="/XSA-logo4.png" alt="XSA Hunting" className="navbar-logo-img" />
+         <span className='navbar-logo-text'>XSA Hunting</span>
+        </Link>
         <div className="navbar-links">
           {user ? (
             <>
