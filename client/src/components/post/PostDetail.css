@@ -25,10 +25,20 @@
   max-height: 520px;
   object-fit: cover;
   margin-top: 12px;
+  border-radius: 8px 8px 0 0;
+  background-color: var(--surface);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.205);
 }
 
 .post-detail-body {
   padding: 16px 20px;
+}
+
+.post-detail-shot {
+  border: 1px solid var(--border);
+  border-radius: 0 0 8px 8px;
+  padding: 16px;
+  background-color: var(--surface);
 }
 
 .post-detail-meta {
