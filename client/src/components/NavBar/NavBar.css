@@ -77,34 +77,33 @@
   border-top: 1px solid rgba(255, 255, 255, 0.15);   /* subtle divider */
 }
 
+/* 1025–1600px: narrower vertical sidebar (only overrides what changes) 
 @media (max-width: 1600px) {
   .navbar {
-  display: flex;
-  flex-direction: column;      /* stack vertically instead of row */
-  gap: 16px;
-  width: 180px;
-  padding: 24px 16px;
-  background-color: var(--primary-dark);   /* dark green sidebar */
-  border-right: 2px solid var(--border);
-  position: sticky;            
-  top: 0;
-  height: 100vh;               
-  align-self: flex-start;      /* don't stretch to match feed height */
-  overflow-y: auto;            /* scrolls internally if nav ever gets too tall */
-}
+    width: 180px;
+  }
 
   .navbar-logo-img {
-  width: 100%;
-  max-width: 140px;   
-  height: auto;
-  display: block;
-}
+    max-width: 140px;   
+  }
+}*/
+
+/* 1025–1250px: slightly narrower sidebar */
+@media (max-width: 1500px) and (min-width: 1025px) {
+  .navbar {
+    width: 170px;          /* down from 220px */
+  }
+
+  .navbar-logo-img {
+    max-width: 140px;      /* shrink logo a touch to match */
+  }
 }
 
+/* 1024px and below: horizontal top bar */
 @media (max-width: 1024px) {
   .navbar {
     flex-direction: row;           /* horizontal instead of vertical */
-    width: 100%;                    /* full width, not 220px */
+    width: 100%;                   /* full width, not 220px */                
     min-height: auto;               /* not full height */
     align-items: center;
     justify-content: space-between;
@@ -141,20 +140,22 @@
     margin-bottom: 0;
   }
 
-  @media (max-width: 1024px) {
-    .navbar-logo-img {
-      display: none;          /* hide the logo image */
-    }
-    .navbar-logo-text {
+  .navbar-logo-img {
+    display: none;          /* hide the logo image */
+  }
+
+  .navbar-logo-text {
     display: inline;        /* show text instead */
     font-size: 1.1rem;
     font-weight: 700;
     color: white;
   }
-  }
 
   .navbar-user {
     display: none;                  /* hide "Logged in as X" to save space */
   }
-}
 
+  .navbar-button {
+    width: auto;                    /* don't stretch full-width in the horizontal bar */
+  }
+}

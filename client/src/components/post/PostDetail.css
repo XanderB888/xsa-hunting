@@ -1,5 +1,5 @@
 .post-detail {
-  width: 90vw;                    /* 90% of the viewport width */
+  width: 100%;                    /* 90% of the viewport width */
   max-width: 1400px;              /* but never wider than 1400px */
   margin: 0 auto;
   background-color: var(--surface);
@@ -69,7 +69,7 @@
   grid-template-columns: 1fr 2fr 1fr;
   gap: 20px;
   align-items: start;
-  padding: 0 20px;
+  padding: 0 20px 24px;
 }
 
 .post-detail-left,
@@ -192,6 +192,6 @@
     max-width: 100%;
     left: 0;
     transform: none;        /* remove the centering trick */
-    position: static;
+    position: relative;
   }
 }
