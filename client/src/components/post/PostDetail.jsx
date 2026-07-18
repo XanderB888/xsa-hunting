@@ -82,8 +82,15 @@ function PostDetail() {
       </button>
       <div className="post-detail-grid">
 
-        {/* LEFT column — firearm + conditions */}
+        {/* LEFT column — hunt details + firearm + conditions */}
         <div className="post-detail-left">
+          <div className="post-detail-section">
+            <h3 className="section-heading">Hunt Details</h3>
+            <div className="conditions-bubble">
+              <p><strong>Location:</strong> {post.location}</p>
+              <p><strong>Shot Distance:</strong> {post.distance}m</p>
+            </div>
+          </div>
           <div className="post-detail-section">
             <FirearmInfo firearm={post} />
           </div>
@@ -102,11 +109,6 @@ function PostDetail() {
           <h2 className="post-detail-title">{post.species} — {post.sex}</h2>
           <p className="post-detail-author">Posted by <strong>{post.username}</strong></p>
           <img src={post.photo} alt={post.species} className="post-detail-image" />
-
-          <div className="post-detail-meta">
-            <span><strong>Location:</strong> {post.location}</span>
-            <span><strong>Shot Distance:</strong> {post.distance}m</span>
-          </div>
 
           <div className="post-detail-shot">
             <ShotPlacementPanel shot={post} />
