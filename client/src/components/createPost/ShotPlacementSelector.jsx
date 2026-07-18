@@ -24,14 +24,14 @@ function ShotPlacementSelector({ onShotChange }) {
       <h3>Shot Placement</h3>
 
       <select value={species} onChange={(e) => { setSpecies(e.target.value); setDot(null); }}>
-        <option value="">Select species</option>
+        <option value="" disabled hidden>Select species</option>
         {Object.keys(SHOT_IMAGES).map((name) => (
           <option key={name} value={name}>{name}</option>
         ))}
       </select>
 
       <select value={view} onChange={(e) => { setView(e.target.value); setDot(null); }} disabled={!species}>
-        <option value="">Select view</option>
+        <option value="" disabled hidden>Select view</option>
         {species && SHOT_IMAGES[species] &&
          Object.keys(SHOT_IMAGES[species]).map((v) => (
           <option key={v} value={v}>{v}</option>

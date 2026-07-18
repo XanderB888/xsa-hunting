@@ -33,20 +33,10 @@
   display: flex;
   flex-direction: column;      /* links stacked */
   gap: 12px;
-  align-items: center;
-  background-color: var(--accent);
-  padding: 10px 14px;
-  border-radius: 6px;
 }
 
-.navbar-links:hover {
-  opacity: 0.8;
-  box-shadow: 0 2px 8px rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-}
-
-.navbar a {
-  color: #e8e4d8;              /* light text on dark sidebar */
+.navbar a:not(.navbar-button) {
+  color: #e8e4d8;              /* light text on dark sidebar — but not buttons */
 }
 
 .navbar-user {
@@ -64,6 +54,13 @@
   cursor: pointer;
   text-align: center;
   transition: box-shadow 0.2s ease, opacity 0.2s ease;
+  display: block;              /* link behaves like the block button */
+  text-decoration: none;       /* kill the underline links get */
+  font-size: inherit;          /* match button font sizing */
+  font-family: inherit; 
+  width: 100%; /*Force both buttons to be same*/
+  line-height: 1.5;         /* ← force identical line height on both */
+  
 }
 .navbar-button:hover {
   opacity: 0.6;

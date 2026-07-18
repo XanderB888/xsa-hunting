@@ -21,7 +21,7 @@ function NavBar() {
         <div className="navbar-links">
           {user ? (
             <>
-              <Link to="/create">New Post</Link>
+              <Link to="/create" className='navbar-button'>New Post</Link>
             </>
           ) : (
             <>
