@@ -7,7 +7,7 @@ import FirearmInfo from './FirearmInfo.jsx';
 import CommentList from '../comments/CommentList.jsx';
 import CommentForm from '../comments/CommentForm.jsx';
 import './PostDetail.css';
-import { clearFeedCache } from '../feed/Feed.jsx';
+import { clearFeedCache, updateCachedPost } from '../feed/Feed.jsx';
 
 function PostDetail() {
   const { id } = useParams();
@@ -38,7 +38,9 @@ function PostDetail() {
   const addComment = async (text) => {
     try {
       const res = await api.post(`/posts/${id}/comments`, { text });
-      setComments([...comments, res.data]);
+      const newComments = [...comments, res.data];
+      setComments(newComments);
+      updateCachedPost(post.id, { comment_count: newComments.length });
     } catch (err) {
       console.error(err);
     }
@@ -59,6 +61,10 @@ function PostDetail() {
     try {
       const res = await api.patch(`/posts/${id}/like`);
       setPost({ ...post, like_count: res.data.like_count, liked_by_me: res.data.liked_by_me });
+      updateCachedPost(post.id, {
+        like_count: res.data.like_count,
+        liked_by_me: res.data.liked_by_me,
+      });
     } catch (err) {
       console.error(err);
     }

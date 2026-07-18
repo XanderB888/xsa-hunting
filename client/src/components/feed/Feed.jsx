@@ -10,6 +10,15 @@ export function clearFeedCache() {
   cachedPosts = null;
 }
 
+/* Patch a single cached post by id, merging in the changed fields.
+ Leaves the rest of the cache intact so scroll position still restores.*/
+export function updateCachedPost(id, changes) {
+  if (cachedPosts === null) return;   // nothing cached yet, nothing to update
+  cachedPosts = cachedPosts.map((post) =>
+    post.id === id ? { ...post, ...changes } : post
+  );
+}
+
 function Feed() {
   const [posts, setPosts] = useState(cachedPosts || []);
   const [loading, setLoading] = useState(cachedPosts === null);
