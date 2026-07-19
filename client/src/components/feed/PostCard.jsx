@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './PostCard.css';
+import { HeartIcon, CommentIcon } from '../icons/Icons.jsx';
 
 function PostCard({ post }) {
   return (
@@ -13,8 +14,8 @@ function PostCard({ post }) {
         </p>
         <div className="post-card-meta">
           <span>{post.species}</span>
-          <span>💬 {post.comment_count}</span>
-          <span>💖 {post.like_count}</span>
+          <span><CommentIcon className="icon comment-icon" /> {post.comment_count}</span>
+          <span><HeartIcon filled={post.liked_by_me} className={`icon like-icon ${post.liked_by_me ? 'liked' : ''}`} /> {post.like_count}</span>
         </div>
         <Link to={`/posts/${post.id}`} className="post-card-link">View post →</Link>
       </div>

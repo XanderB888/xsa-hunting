@@ -8,6 +8,7 @@ import CommentList from '../comments/CommentList.jsx';
 import CommentForm from '../comments/CommentForm.jsx';
 import './PostDetail.css';
 import { clearFeedCache, updateCachedPost } from '../feed/Feed.jsx';
+import { HeartIcon } from '../icons/Icons.jsx';
 
 function PostDetail() {
   const { id } = useParams();
@@ -115,14 +116,10 @@ function PostDetail() {
           </div>
 
           <div className="post-detail-actions">
-            <button
-              onClick={handleLike}
-              className="like-button"
-              style={{ backgroundColor: post.liked_by_me ? 'var(--primary)' : 'var(--border)' }}
-            >
-              💖 {post.like_count}
-            </button>
-            {isOwner && (
+            <button onClick={handleLike} className="like-button">
+                <HeartIcon filled={post.liked_by_me} className={`icon like-icon ${post.liked_by_me ? 'liked' : ''}`} /> {post.like_count}
+              </button>
+                {isOwner && (
               <button onClick={handleDelete} className="delete-button">
                 Delete this post
               </button>

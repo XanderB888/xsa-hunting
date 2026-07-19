@@ -77,6 +77,26 @@
   font-weight: 600;
 }
 
+.icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+/* like icon states */
+.like-icon {
+  color: var(--text-muted);      /* grey outline when not liked */
+  transition: color 0.2s ease;
+}
+.like-icon.liked {
+  color: #c0392b;                /* red when liked */
+}
+
+/* comment icon */
+.comment-icon {
+  color: var(--text-muted);
+}
+
 @media (max-width: 768px) {
   .post-card-image {
     height: 240px;      /* shorter on mobile — less aggressive crop */
