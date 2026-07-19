@@ -149,6 +149,8 @@
     font-size: 1.1rem;
     font-weight: 700;
     color: white;
+    font-family: 'Stardos', sans-serif;
+    font-weight: 400;
   }
 
   .navbar-user {
