@@ -1,16 +1,28 @@
+/* ============================================
+   BASE — desktop vertical sidebar (>1024px)
+   ============================================ */
 .navbar {
   display: flex;
-  flex-direction: column;      /* stack vertically instead of row */
+  flex-direction: column;      /* stack vertically */
   gap: 16px;
   width: 220px;
   padding: 24px 16px;
   background-color: var(--primary-dark);   /* dark green sidebar */
   border-right: 2px solid var(--border);
-  position: sticky;            
+  position: sticky;
   top: 0;
-  height: 100vh;               
+  height: 100vh;
   align-self: flex-start;      /* don't stretch to match feed height */
-  overflow-y: auto;            /* scrolls internally if nav ever gets too tall */
+  overflow-y: auto;            /* scroll internally if nav gets too tall */
+}
+
+/* Drawer wrapper — transparent pass-through on desktop,
+   fills sidebar height so navbar-bottom's margin-top:auto works */
+.navbar-drawer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 16px;
 }
 
 .navbar-logo {
@@ -18,15 +30,15 @@
   margin-bottom: 20px;
 }
 
-.navbar-logo-text {
-  display: none;
-}
-
 .navbar-logo-img {
   width: 100%;
-  max-width: 180px;   
+  max-width: 180px;
   height: auto;
   display: block;
+}
+
+.navbar-logo-text {
+  display: none;               /* hidden on desktop, shown in top bar ≤1024 */
 }
 
 .navbar-links {
@@ -37,6 +49,18 @@
 
 .navbar a:not(.navbar-button) {
   color: #e8e4d8;              /* light text on dark sidebar — but not buttons */
+}
+
+.navbar-about-link {
+  color: #b5ad9c;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 6px 0;
+  display: block;
+}
+.navbar a.navbar-about-link:hover {
+  color: #e8e4d8;
+  text-decoration: none;
 }
 
 .navbar-user {
@@ -57,10 +81,9 @@
   display: block;              /* link behaves like the block button */
   text-decoration: none;       /* kill the underline links get */
   font-size: inherit;          /* match button font sizing */
-  font-family: inherit; 
-  width: 100%; /*Force both buttons to be same*/
-  line-height: 1.5;         /* ← force identical line height on both */
-  
+  font-family: inherit;
+  width: 100%;                 /* force both buttons same width */
+  line-height: 1.5;            /* force identical line height */
 }
 .navbar-button:hover {
   opacity: 0.6;
@@ -69,7 +92,7 @@
 }
 
 .navbar-bottom {
-  margin-top: auto;        /* pushes this group to the bottom */
+  margin-top: auto;            /* push to the bottom of the sidebar */
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -77,61 +100,64 @@
   border-top: 1px solid rgba(255, 255, 255, 0.15);   /* subtle divider */
 }
 
-/* 1025–1600px: narrower vertical sidebar (only overrides what changes) 
-@media (max-width: 1600px) {
-  .navbar {
-    width: 180px;
-  }
+/* burger + overlay hidden by default, only appear ≤425px */
+.navbar-burger {
+  display: none;
+}
+.navbar-overlay {
+  display: none;
+}
 
-  .navbar-logo-img {
-    max-width: 140px;   
-  }
-}*/
-
-/* 1025–1250px: slightly narrower sidebar */
+/* ============================================
+   1025–1500px — slightly narrower sidebar
+   ============================================ */
 @media (max-width: 1500px) and (min-width: 1025px) {
   .navbar {
-    width: 170px;          /* down from 220px */
+    width: 170px;
   }
 
   .navbar-logo-img {
-    max-width: 140px;      /* shrink logo a touch to match */
+    max-width: 140px;
   }
 }
 
-/* 1024px and below: horizontal top bar */
+/* ============================================
+   ≤1024px — horizontal top bar
+   ============================================ */
 @media (max-width: 1024px) {
   .navbar {
-    flex-direction: row;           /* horizontal instead of vertical */
-    width: 100%;                   /* full width, not 220px */                
-    min-height: auto;               /* not full height */
+    flex-direction: row;
+    width: 100%;
+    min-height: auto;
     align-items: center;
     justify-content: space-between;
     padding: 12px 16px;
-    position: sticky;               
-    height: auto;                   /* cancel the 100vh */
-    align-self: auto;               /* cancel flex-start */
-    overflow-y: visible;     
+    height: auto;                /* cancel the 100vh */
+    align-self: auto;            /* cancel flex-start */
+    overflow-y: visible;
     z-index: 10;
   }
 
-  .navbar-top {
-    display: flex;
-    flex-direction: row;            /* logo + links in a row */
+  /* drawer becomes a horizontal row, pushed right */
+  .navbar-drawer {
+    flex-direction: row;
+    flex: 1;
     align-items: center;
+    justify-content: flex-end;
     gap: 16px;
   }
 
   .navbar-links {
-    flex-direction: row;            /* links side by side */
+    flex-direction: row;
     gap: 12px;
+    margin: 0;
   }
 
   .navbar-bottom {
-    margin-top: 0;                  /* no longer pushed to bottom */
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    margin: 0;                   /* cancel margin-top:auto in the row */
     border-top: none;
     padding-top: 0;
   }
@@ -141,23 +167,112 @@
   }
 
   .navbar-logo-img {
-    display: none;          /* hide the logo image */
+    display: none;               /* hide image logo */
   }
 
   .navbar-logo-text {
-    display: inline;        /* show text instead */
+    display: inline;             /* show text wordmark */
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 400;
     color: white;
     font-family: 'Stardos', sans-serif;
-    font-weight: 400;
   }
 
   .navbar-user {
-    display: none;                  /* hide "Logged in as X" to save space */
+    display: none;               /* hide "Logged in as X" to save space */
   }
 
   .navbar-button {
-    width: auto;                    /* don't stretch full-width in the horizontal bar */
+    width: auto;                 /* don't stretch in the horizontal bar */
+  }
+}
+
+/* ============================================
+   ≤425px — burger + slide-in drawer
+   ============================================ */
+@media (max-width: 425px) {
+  /* top bar: logo left, burger right */
+  .navbar-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  /* show the burger */
+  .navbar-burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 30;
+  }
+  .navbar-burger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 2px;
+  }
+
+  /* drawer: fixed panel, off-screen right until opened */
+  .navbar-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 240px;
+    background-color: var(--primary-dark);
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 24px 16px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 25;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.3);
+  }
+  .navbar-drawer.open {
+    transform: translateX(0);
+  }
+
+  /* dark overlay behind the drawer */
+  .navbar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+  }
+
+  /* links stack vertically in the drawer */
+  .navbar-links {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .navbar-bottom {
+    flex-direction: column;
+    margin-top: auto;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 16px;
+  }
+
+  .navbar-user {
+    display: block;              /* re-show in the drawer */
+  }
+
+  .navbar-button {
+    width: 100%;                 /* full-width in the drawer */
   }
 }
