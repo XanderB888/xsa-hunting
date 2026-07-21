@@ -1,0 +1,39 @@
+.about-us {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.about-us h1 {
+  color: var(--primary-dark);
+  margin-bottom: 16px;
+}
+
+.about-us h2 {
+  color: var(--accent);
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.about-us p {
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.navbar a.navbar-about-link {
+  color: #b5ad9c;              
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 6px 0;
+  display: block;
+}
+.navbar a.navbar-about-link:hover {
+  color: #e8e4d8;              
+  text-decoration: none;
+}

@@ -6,6 +6,7 @@ import Feed from './components/feed/Feed';
 import PostDetail from './components/post/PostDetail';
 import CreatePostForm from './components/createPost/CreatePostForm';
 import ProtectedRoute from './components/routes/ProtectedRoute.jsx';
+import AboutUs from './components/about/AboutUs.jsx';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                             </ProtectedRoute>} />
                         <Route path="/signup" element={<SignupPage />} />
                         <Route path="/login" element={<LoginPage />} />
+                        <Route path="/about" element={<AboutUs />} />
                         <Route path="/posts/:id" element={
                             <ProtectedRoute>
                                 <PostDetail />

@@ -19,7 +19,7 @@ function NavBar() {
          <span className='navbar-logo-text'>XSA Hunting</span>
         </Link>
         <div className="navbar-links">
-          {user ? (
+          {user ? ( /*Everything after user ? is only showed when logged in */
             <>
               <Link to="/create" className='navbar-button'>New Post</Link>
             </>
@@ -32,12 +32,15 @@ function NavBar() {
         </div>
       </div>
 
-      {user && (
-        <div className="navbar-bottom">
-          <span className="navbar-user">Logged in as {user.username}</span>
-          <button onClick={handleLogout} className="navbar-button">Logout</button>
-        </div>
-      )}
+      <div className="navbar-bottom">
+        <Link to="/about" className="navbar-about-link">About Us</Link>
+        {user && (
+          <>
+            <span className="navbar-user">Logged in as {user.username}</span>
+            <button onClick={handleLogout} className="navbar-button">Logout</button>
+          </>
+        )}
+      </div>
     </nav>
   );
 }
