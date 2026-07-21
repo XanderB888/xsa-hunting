@@ -227,6 +227,7 @@ cd client && npm test        # Vitest
 - **Tighter CORS** — currently open; should be restricted to the deployed frontend origin
 - **Per-user like optimisation** — the feed currently computes like state per post; could be batched
 - **Gun shop marketplace** — allow businesses to advertise thier products such as firearms and ammunition on a merketplace section
+- **Password reset** — email-based recovery flow (forgot-password page, secure time-limited reset tokens, and an email provider like Resend or SendGrid); currently accounts have no recovery option since passwords are one-way hashed
 
 ---
 
