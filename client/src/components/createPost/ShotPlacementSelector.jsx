@@ -39,16 +39,16 @@ function ShotPlacementSelector({ onShotChange }) {
       </select>
 
       {currentImage && (
-    <div style={{ position: 'relative', display: 'inline-block' }}>
+    <div style={{ position: 'relative', width: '100%', maxWidth: '500px' }}>
       <img
         src={currentImage}
         alt={`${species} ${view}`}
         onClick={handleImageClick}
         style={{ 
           cursor: 'crosshair',
-          width: '500px',
-          height: '367px',
-          objectFit: 'contain', 
+          width: '100%',
+          height: 'auto',
+          display: 'block', 
         }}
       />
       {dot && (
